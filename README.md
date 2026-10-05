@@ -21,9 +21,17 @@ npm run preview
 
 ## Deploy
 
-Push to `master`/`main`. GitHub Actions builds and deploys to GitHub Pages.
+Production files are built into `docs/`.
 
-In the repo: **Settings → Pages → Source → GitHub Actions**.
+**Recommended Pages settings** (avoids GitHub overwriting the Vite build with source files):
+
+1. Run `npm run build`
+2. Commit the updated `docs/` folder
+3. In **Settings → Pages**:
+   - Source: **Deploy from a branch**
+   - Branch: `master` / **`/docs`**
+
+Optional: keep the GitHub Actions workflow, but if you use Actions as the source, disable the repo workflow named **pages-build-deployment** so it does not overwrite the Vite artifact.
 
 ## Content
 
