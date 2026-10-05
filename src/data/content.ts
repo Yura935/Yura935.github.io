@@ -9,6 +9,8 @@ export type Project = {
   liveUrl: string
   repoUrl?: string
   status: 'Live' | 'Demo'
+  demoUser?: string
+  demoPassword?: string
 }
 
 export type SkillGroup = {
@@ -36,7 +38,7 @@ export const profile = {
   name: 'Yurii Boiko',
   handle: 'Yura935',
   role: 'Software Engineer',
-  company: 'Solvexus · SoftServe',
+  company: 'Solvexus',
   location: 'Lviv, Ukraine',
   years: '5+',
   level: 52,
@@ -137,6 +139,8 @@ export const projects: Project[] = [
     liveUrl: 'https://amator-dub.web.app/signIn',
     repoUrl: 'https://github.com/Yura935/amator-dub',
     status: 'Live',
+    demoUser: 'user10@gmail.com',
+    demoPassword: 'qwerty123',
   },
   {
     id: 'chatforyou',
@@ -148,6 +152,8 @@ export const projects: Project[] = [
     liveUrl: 'https://yura935.github.io/ChatForYou/login',
     repoUrl: 'https://github.com/Yura935/ChatForYou',
     status: 'Live',
+    demoUser: 'user@gmail.com',
+    demoPassword: 'qwery123',
   },
   {
     id: 'friendly',
@@ -159,6 +165,8 @@ export const projects: Project[] = [
     liveUrl: 'https://friendly-sandy.vercel.app/auth/sign-in',
     repoUrl: 'https://github.com/Yura935/Friendly',
     status: 'Live',
+    demoUser: 'atest',
+    demoPassword: '12345',
   },
 ]
 

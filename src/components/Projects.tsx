@@ -1,5 +1,6 @@
 import { projects } from '../data/content'
 import { useReveal } from '../hooks/useReveal'
+import { buildDemoUrl } from '../utils/demoCredentials'
 
 // Featured projects as quest cards. Inputs: none. Returns: project list with demo links.
 export function Projects() {
@@ -18,37 +19,49 @@ export function Projects() {
       </div>
 
       <div className="projects">
-        {projects.map((project, index) => (
-          <article
-            key={project.id}
-            className="quest"
-            style={{ transitionDelay: `${index * 80}ms` }}
-          >
-            <div className="quest__meta">
-              <span>{project.tagline}</span>
-              <span className="quest__status">{project.status}</span>
-            </div>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <ul className="chip-row">
-              {project.stack.map((tech) => (
-                <li key={tech}>{tech}</li>
-              ))}
-            </ul>
-            <div className="quest__actions">
-              <a className="btn btn--primary" href={project.liveUrl} target="_blank" rel="noreferrer">
-                Open demo
-              </a>
-              {project.repoUrl ? (
-                <a className="btn btn--ghost" href={project.repoUrl} target="_blank" rel="noreferrer">
-                  Source
+        {projects.map((project, index) => {
+          const demoHref =
+            project.demoUser && project.demoPassword
+              ? buildDemoUrl(project.liveUrl, project.demoUser, project.demoPassword)
+              : project.liveUrl
+
+          return (
+            <article
+              key={project.id}
+              className="quest"
+              style={{ transitionDelay: `${index * 80}ms` }}
+            >
+              <div className="quest__meta">
+                <span>{project.tagline}</span>
+                <span className="quest__status">{project.status}</span>
+              </div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <ul className="chip-row">
+                {project.stack.map((tech) => (
+                  <li key={tech}>{tech}</li>
+                ))}
+              </ul>
+              <div className="quest__actions">
+                <a className="btn btn--primary" href={demoHref} target="_blank" rel="noreferrer">
+                  Open demo
                 </a>
-              ) : (
-                <span className="quest__soon">Repo coming soon</span>
-              )}
-            </div>
-          </article>
-        ))}
+                {project.repoUrl ? (
+                  <a
+                    className="btn btn--ghost"
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Source
+                  </a>
+                ) : (
+                  <span className="quest__soon">Repo coming soon</span>
+                )}
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )
