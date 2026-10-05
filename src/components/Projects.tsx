@@ -20,10 +20,12 @@ export function Projects() {
 
       <div className="projects">
         {projects.map((project, index) => {
-          const demoHref =
-            project.demoUser && project.demoPassword
-              ? buildDemoUrl(project.liveUrl, project.demoUser, project.demoPassword)
-              : project.liveUrl
+          const shouldEmbed =
+            project.embedDemoCredentials !== false &&
+            Boolean(project.demoUser && project.demoPassword)
+          const demoHref = shouldEmbed
+            ? buildDemoUrl(project.liveUrl, project.demoUser!, project.demoPassword!)
+            : project.liveUrl
 
           return (
             <article
@@ -37,6 +39,12 @@ export function Projects() {
               </div>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
+              {project.showCredentialsNote && project.demoUser && project.demoPassword ? (
+                <p className="quest__creds">
+                  Demo login: <code>{project.demoUser}</code> /{' '}
+                  <code>{project.demoPassword}</code>
+                </p>
+              ) : null}
               <ul className="chip-row">
                 {project.stack.map((tech) => (
                   <li key={tech}>{tech}</li>

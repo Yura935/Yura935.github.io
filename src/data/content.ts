@@ -11,6 +11,10 @@ export type Project = {
   status: 'Live' | 'Demo'
   demoUser?: string
   demoPassword?: string
+  /** When true, Open demo appends encoded credentials to the URL. */
+  embedDemoCredentials?: boolean
+  /** When true, show demo login/password on the portfolio card. */
+  showCredentialsNote?: boolean
 }
 
 export type SkillGroup = {
@@ -167,6 +171,9 @@ export const projects: Project[] = [
     status: 'Live',
     demoUser: 'atest',
     demoPassword: '12345',
+    // Live Vercel deploy cannot be updated right now — show creds on the card instead.
+    embedDemoCredentials: false,
+    showCredentialsNote: true,
   },
 ]
 
