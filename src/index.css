@@ -498,6 +498,9 @@ img {
 }
 
 .quest {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 1.35rem;
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
@@ -505,6 +508,10 @@ img {
 .quest:hover {
   transform: translateY(-3px);
   border-color: rgba(232, 193, 122, 0.35);
+}
+
+.quest .chip-row {
+  margin-top: auto;
 }
 
 .quest__meta {
